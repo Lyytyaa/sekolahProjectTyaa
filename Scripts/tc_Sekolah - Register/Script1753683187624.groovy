@@ -41,7 +41,9 @@ WebUI.maximizeWindow()
 
 WebUI.click(findTestObject("Object Repository/Page_SMPN6 - Laravel/a_Register"))
 
-WebUI.setText(findTestObject("Object Repository/Page_Register - Laravel/input_Name_name"), "Abdul dua")
+String inputNama = "Abdul dua"
+
+WebUI.setText(findTestObject("Object Repository/Page_Register - Laravel/input_Name_name"), inputNama)
 
 WebUI.setText(findTestObject("Object Repository/Page_Register - Laravel/input_Email_email"), "abdul@dua.mantapdua")
 
@@ -53,6 +55,6 @@ WebUI.click(findTestObject("Object Repository/Page_Register - Laravel/button_Reg
 
 String excelTC = "C:\\Users\\malik\\Documents\\Project Abdul\\Atry Katalon Project\\Excel\\TC - Training sekolah.xlsx"
 
-Verif.checkLoginAndWriteExcelRegister(excelTC)
+Verif.checkLoginAndWriteExcelRegister(excelTC, inputNama)
 
 

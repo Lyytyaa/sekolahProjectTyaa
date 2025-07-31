@@ -43,7 +43,6 @@ Connection conn = DriverManager.getConnection(url, username, password)
 
 Statement stmt = conn.createStatement()
 
-stmt.execute("USE sekolah")
 ResultSet rs1 = stmt.executeQuery("select * from sekolah.users order by id desc limit 10")
 ResultSetMetaData meta=rs1.getMetaData()
 int columnCount = meta.getColumnCount()
