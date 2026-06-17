@@ -32,24 +32,17 @@ import org.apache.poi.xssf.usermodel.XSSFCell
 import java.text.SimpleDateFormat
 import java.sql.Date
 import java.util.Date
+import java.text.SimpleDateFormat
 import custom.Verif as Verif
 
 WebUI.openBrowser('')
 
-WebUI.navigateToUrl('https://sekolah.atrialfa.shop/', FailureHandling.STOP_ON_FAILURE)
+WebUI.navigateToUrl('https://www.testing.co.id/', FailureHandling.STOP_ON_FAILURE)
 
 WebUI.maximizeWindow()
 
-WebUI.click(findTestObject("Object Repository/Page_SMPN6 - Laravel/a_Log in"), FailureHandling.STOP_ON_FAILURE)
+String excelTC = "C:\\Users\\malik\\Documents\\Project Abdul\\Inti Jaya Project\\Excel\\TC - Inti Jaya.xlsx"
 
-WebUI.setText(findTestObject('Object Repository/Page_Log in - Laravel/input_Email_email'), "kucluk@anjas")
+WebUI.click(findTestObject("Object Repository/Intijaya/a_Tentang_Kami"))
 
-WebUI.setText(findTestObject('Object Repository/Page_Log in - Laravel/input_Password_password'), "Genteng")
-
-WebUI.click(findTestObject("Object Repository/Page_Log in - Laravel/button_Log in"))
-
-String excelTC = "C:\\Users\\malik\\Documents\\Project Abdul\\Atry Katalon Project\\Excel\\TC - Training sekolah.xlsx"
-
-Verif.checkLoginAndWriteExcelNegative(excelTC)
-
-WebUI.click(findTestObject('Object Repository/Page_Log in - Laravel/input_Email_email'))
+Verif.check_INTTentangKami(excelTC)

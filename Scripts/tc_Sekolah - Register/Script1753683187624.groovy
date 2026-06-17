@@ -41,11 +41,11 @@ WebUI.maximizeWindow()
 
 WebUI.click(findTestObject("Object Repository/Page_SMPN6 - Laravel/a_Register"))
 
-String inputNama = "Abdul dua"
+String inputNama = "Abdul tiga"
 
 WebUI.setText(findTestObject("Object Repository/Page_Register - Laravel/input_Name_name"), inputNama)
 
-WebUI.setText(findTestObject("Object Repository/Page_Register - Laravel/input_Email_email"), "abdul@dua.mantapdua")
+WebUI.setText(findTestObject("Object Repository/Page_Register - Laravel/input_Email_email"), "abdul@dua.mantaptiga")
 
 WebUI.setText(findTestObject("Object Repository/Page_Register - Laravel/input_Password_password"), "muantap12345")
 

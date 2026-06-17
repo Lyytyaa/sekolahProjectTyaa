@@ -32,24 +32,20 @@ import org.apache.poi.xssf.usermodel.XSSFCell
 import java.text.SimpleDateFormat
 import java.sql.Date
 import java.util.Date
+import java.text.SimpleDateFormat
 import custom.Verif as Verif
 
 WebUI.openBrowser('')
-
-WebUI.navigateToUrl('https://sekolah.atrialfa.shop/', FailureHandling.STOP_ON_FAILURE)
-
+WebUI.navigateToUrl('https://www.testing.co.id/', FailureHandling.STOP_ON_FAILURE)
 WebUI.maximizeWindow()
 
-WebUI.click(findTestObject("Object Repository/Page_SMPN6 - Laravel/a_Log in"), FailureHandling.STOP_ON_FAILURE)
+WebUI.mouseOver(findTestObject('Object Repository/Intijaya/a_Semua_Kategori'))
 
-WebUI.setText(findTestObject('Object Repository/Page_Log in - Laravel/input_Email_email'), "kucluk@anjas")
+WebUI.waitForElementPresent(findTestObject('Object Repository/Intijaya/a_Semua_Kategori-Test_Chamber'), 1)
 
-WebUI.setText(findTestObject('Object Repository/Page_Log in - Laravel/input_Password_password'), "Genteng")
+WebUI.click(findTestObject('Object Repository/Intijaya/a_Semua_Kategori-Test_Chamber'))
 
-WebUI.click(findTestObject("Object Repository/Page_Log in - Laravel/button_Log in"))
+String excelTC = "C:\\Users\\malik\\Documents\\Project Abdul\\Inti Jaya Project\\Excel\\TC - Inti Jaya.xlsx"
 
-String excelTC = "C:\\Users\\malik\\Documents\\Project Abdul\\Atry Katalon Project\\Excel\\TC - Training sekolah.xlsx"
+Verif.check_INTDropdownTestChamber(excelTC)
 
-Verif.checkLoginAndWriteExcelNegative(excelTC)
-
-WebUI.click(findTestObject('Object Repository/Page_Log in - Laravel/input_Email_email'))

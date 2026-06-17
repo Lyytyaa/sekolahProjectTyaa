@@ -1,6 +1,7 @@
 package custom
 
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+import static com.kms.katalon.core.model.FailureHandling.STOP_ON_FAILURE
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
@@ -25,10 +26,6 @@ import org.apache.poi.xssf.usermodel.*
 import java.io.FileOutputStream
 import org.apache.poi.ss.usermodel.Row
 import org.apache.poi.ss.usermodel.*
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
-import org.apache.poi.xssf.usermodel.XSSFSheet
-import org.apache.poi.xssf.usermodel.XSSFRow
-import org.apache.poi.xssf.usermodel.XSSFCell
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -129,6 +126,7 @@ public class Verif {
 
 		if (verif) {
 			WebUI.takeScreenshot(fileCapturePath, FailureHandling.STOP_ON_FAILURE)
+			WebUI.takeScreenshot(fileCapturePath, FailureHandling.STOP_ON_FAILURE)
 			FileInputStream file = new FileInputStream(excelPath)
 			Workbook workbook = new XSSFWorkbook(file)
 			Sheet sheet = workbook.getSheetAt(0)
@@ -154,6 +152,151 @@ public class Verif {
 			}else {
 				cell2.setCellValue("'Verifikasi database GAGAL: Nama TIDAK ditemukan dalam 10 data terbaru'")
 			}
+
+			file.close()
+			FileOutputStream outFile = new FileOutputStream(excelPath)
+			workbook.write(outFile)
+			outFile.close()
+		}
+	}
+	@Keyword
+	def static void check_INTTentangKami(String excelPath) {
+		boolean verif = false
+
+		while (verif==false) {
+			verif = WebUI.verifyTextPresent("PT. Inti Jaya Presisi", false, FailureHandling.STOP_ON_FAILURE)
+		}
+
+		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS").format(new Date())
+		String fileCapturePath = "C:\\Users\\malik\\Documents\\Project Abdul\\Inti Jaya Project\\Capture\\Capture_Tentang_Kami_${timestamp}.png"
+
+		if (verif) {
+			WebUI.takeScreenshot(fileCapturePath, FailureHandling.STOP_ON_FAILURE)
+			FileInputStream file = new FileInputStream(excelPath)
+			Workbook workbook = new XSSFWorkbook(file)
+			CellStyle borderedStyle = createCommonBorderedStyle(workbook)
+			//Update Test Case Sheet
+			Sheet sheetTC = workbook.getSheetAt(0)
+			Row rowTC = sheetTC.getRow(9)
+			Cell cell = rowTC.getCell(7)
+			if (cell != null) {
+				rowTC.removeCell(cell)
+			}
+			cell = rowTC.createCell(7)
+			cell.setCellValue("As Expected")
+			cell.setCellStyle(borderedStyle)
+			//Update Test Log Sheet
+			Sheet sheetLog = workbook.getSheet("Test Log")
+			int nextRowIndex = sheetLog.getLastRowNum() + 1
+			Row newRow = sheetLog.createRow(nextRowIndex)
+
+			Cell cellNo = newRow.createCell(0)
+			cellNo.setCellValue(nextRowIndex)
+			cellNo.setCellStyle(borderedStyle)
+
+			Cell cellScenario = newRow.createCell(1)
+			cellScenario.setCellValue("Verify Tentang Kami Page")
+			cellScenario.setCellStyle(borderedStyle)
+
+			Cell cellStatus = newRow.createCell(2)
+			cellStatus.setCellValue("As Expected")
+			cellStatus.setCellStyle(borderedStyle)
+
+			file.close()
+			FileOutputStream outFile = new FileOutputStream(excelPath)
+			workbook.write(outFile)
+			outFile.close()
+		}
+	}
+	@Keyword
+	def static void check_INTDropdownTestChamber(String excelPath) {
+		boolean verif = false
+
+		while (verif==false) {
+			verif = WebUI.verifyTextPresent("The custom chamber can be made to expand the wide applications of the test.", false, FailureHandling.STOP_ON_FAILURE)
+		}
+
+		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS").format(new Date())
+		String fileCapturePath = "C:\\Users\\malik\\Documents\\Project Abdul\\Inti Jaya Project\\Capture\\Capture_Test_Chamber_${timestamp}.png"
+
+		if (verif) {
+			WebUI.takeScreenshot(fileCapturePath, FailureHandling.STOP_ON_FAILURE)
+			FileInputStream file = new FileInputStream(excelPath)
+			Workbook workbook = new XSSFWorkbook(file)
+			CellStyle borderedStyle = createCommonBorderedStyle(workbook)
+			//Update Test Case Sheet
+			Sheet sheetTC = workbook.getSheetAt(0)
+			Row rowTC = sheetTC.getRow(10)
+			Cell cell = rowTC.getCell(7)
+			if (cell != null) {
+				rowTC.removeCell(cell)
+			}
+			cell = rowTC.createCell(7)
+			cell.setCellValue("As Expected")
+			cell.setCellStyle(borderedStyle)
+			//Update Test Log Sheet
+			Sheet sheetLog = workbook.getSheet("Test Log")
+			int nextRowIndex = sheetLog.getLastRowNum() + 1
+			Row newRow = sheetLog.createRow(nextRowIndex)
+
+			Cell cellNo = newRow.createCell(0)
+			cellNo.setCellValue(nextRowIndex)
+			cellNo.setCellStyle(borderedStyle)
+
+			Cell cellScenario = newRow.createCell(1)
+			cellScenario.setCellValue("Verify Dropdown Test Chamber")
+			cellScenario.setCellStyle(borderedStyle)
+
+			Cell cellStatus = newRow.createCell(2)
+			cellStatus.setCellValue("As Expected")
+			cellStatus.setCellStyle(borderedStyle)
+
+			file.close()
+			FileOutputStream outFile = new FileOutputStream(excelPath)
+			workbook.write(outFile)
+			outFile.close()
+		}
+	}
+	@Keyword
+	def static void check_INTHardnessProduct(String excelPath) {
+		boolean verif = WebUI.verifyTextPresent("DESKRIPSI PRODUK", false, FailureHandling.STOP_ON_FAILURE)
+
+		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS").format(new Date())
+		String fileCapturePath = "C:\\Users\\malik\\Documents\\Project Abdul\\Inti Jaya Project\\Capture\\Capture_Hardness_${timestamp}.png"
+
+		if (verif) {
+			WebUI.takeScreenshot(fileCapturePath, FailureHandling.STOP_ON_FAILURE)
+			FileInputStream file = new FileInputStream(excelPath)
+			Workbook workbook = new XSSFWorkbook(file)
+			CellStyle borderedStyle = createCommonBorderedStyle(workbook)
+
+			// Update Test Case Sheet (Baris TC3 = Index 11)
+			Sheet sheetTC = workbook.getSheetAt(0)
+			Row rowTC = sheetTC.getRow(11)
+			Cell cell = rowTC.getCell(7)
+			if (cell != null) {
+				rowTC.removeCell(cell)
+			}
+			cell = rowTC.createCell(7)
+			cell.setCellValue("As Expected")
+			cell.setCellStyle(borderedStyle)
+
+			// Update Test Log Sheet
+			Sheet sheetLog = workbook.getSheet("Test Log")
+			int nextRowIndex = sheetLog.getLastRowNum() + 1
+			Row newRow = sheetLog.createRow(nextRowIndex)
+
+			Cell cellNo = newRow.createCell(0)
+			cellNo.setCellValue(nextRowIndex)
+			cellNo.setCellStyle(borderedStyle)
+
+			Cell cellScenario = newRow.createCell(1)
+			cellScenario.setCellValue("Verify Scroll and Click Hardness Product")
+			cellScenario.setCellStyle(borderedStyle)
+
+			Cell cellStatus = newRow.createCell(2)
+			cellStatus.setCellValue("As Expected")
+			cellStatus.setCellStyle(borderedStyle)
 
 			file.close()
 			FileOutputStream outFile = new FileOutputStream(excelPath)
